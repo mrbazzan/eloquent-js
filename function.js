@@ -28,3 +28,9 @@ const hummus = function(factor) {
 
  const quad = x => x*x*x*x;
  
+ // OPTIONAL ARGUMENTS
+
+ function minus(a, b){
+    if (b == undefined) return -a;
+    else return a - b;
+ }
