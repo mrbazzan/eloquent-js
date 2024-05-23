@@ -34,3 +34,15 @@ const hummus = function(factor) {
     if (b == undefined) return -a;
     else return a - b;
  }
+
+ // CLOSURE
+
+ function wrap(n){
+    let local = n;
+    return () => local;
+ }
+
+ function wrap2(n){
+    return () => n;
+ }
+ 
