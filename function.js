@@ -45,4 +45,28 @@ const hummus = function(factor) {
  function wrap2(n){
     return () => n;
  }
- 
+
+ // RECURSION
+
+ let power = function(base, exponent){
+    if (exponent == 0){
+        return 1;
+    }
+    return base * power(base, exponent-1)
+ }
+
+ function findSolution(target){
+    function find(current, history){
+        console.log(history);
+        if (current == target){
+            return history;
+        } else if (current > target){
+            return null;
+        } else {
+            return find(current + 5, `(${history}+5)`) ??
+                   find(current * 3, `(${history}*3)`);
+        }
+    }
+    return find(1, "1");
+ }
+
