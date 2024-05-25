@@ -70,3 +70,18 @@ const hummus = function(factor) {
     return find(1, "1");
  }
 
+ // GROWING FUNCTIONS
+
+ function zeroPad(number, width){
+    digitString = String(number);
+    while (digitString.length < width){
+        digitString = "0" + digitString
+    }
+    return digitString;
+}
+
+ function printInventory(cows, chickens, goats){
+    console.log(`${zeroPad(cows, 3)} Cows`);
+    console.log(`${zeroPad(chickens, 3)} Chickens`);
+    console.log(`${zeroPad(goats, 3)} Goats`);
+ }
