@@ -63,3 +63,19 @@ for(let i=0; i<=100; i+=15){
 }
 
 // CHESSBOARD
+let pattern = "";
+let size = 6;
+let to_start = " ";
+for(let i=0; i<size; i++){
+    let inner = "";
+    while (inner.length < size){
+        inner = inner + to_start;
+        to_start = (to_start == "#")? " ": "#";
+    }
+    // skip if size is odd
+    if (size % 2 == 0){
+        to_start = (to_start == "#")? " ": "#";
+    }
+    pattern = pattern + inner + "\n";
+}
+console.log(pattern)
