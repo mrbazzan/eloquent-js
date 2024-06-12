@@ -17,3 +17,22 @@ function range(start, end, step=1) {
     }
     return arr;
 }
+
+
+// REVERSING AN ARRAY
+function reverseArray(arr){
+    let newArray = [];
+    for (let element of arr){
+        newArray.unshift(element);
+    }
+    return newArray;
+}
+
+function reverseArrayInPlace(arr){
+    for (let i=0; i<Math.floor(arr.length/2); i++){
+        let temp = arr[arr.length-i-1];
+        arr[arr.length-i-1] = arr[i];
+        arr[i] = temp;
+    }
+    return arr;
+}
