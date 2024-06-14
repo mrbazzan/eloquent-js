@@ -36,3 +36,24 @@ function reverseArrayInPlace(arr){
     }
     return arr;
 }
+
+// A LIST
+function arrayToList(arr){
+    let list = {}
+    if (!arr.length) return list
+    else if (arr.length == 1) return {value: arr[0], rest: null};
+    list.value = arr[0];
+    list.rest = arrayToList(arr.slice(1));
+    return list;
+}
+
+function arrayToListLoop(arr){
+    let list = {value: arr[arr.length-1], rest: null};
+    for (let i=1; i<arr.length; i++){
+        let inner_list = {};
+        inner_list.value = arr[arr.length-i-1];
+        inner_list.rest = list;
+        list = inner_list;
+    }
+    return list;
+}
