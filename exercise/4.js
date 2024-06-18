@@ -57,3 +57,22 @@ function arrayToListLoop(arr){
     }
     return list;
 }
+
+function listToArray(list){
+    let arr = [];
+    if (list === null || list.rest === undefined) return arr;
+    else{
+        arr = listToArray(list.rest);
+        arr.unshift(list.value);
+    }
+    return arr;
+}
+
+function listToArrayLoop(list){
+    let arr = [];
+    while (list !== null && list.rest !== undefined){
+        arr.push(list.value);
+        list = list.rest;
+    }
+    return arr;
+}
