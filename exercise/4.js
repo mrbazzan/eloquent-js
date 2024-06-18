@@ -76,3 +76,24 @@ function listToArrayLoop(list){
     }
     return arr;
 }
+
+function prepend(element, list){
+    return {value: element, rest: list};
+}
+
+function nth(list, number){
+    let count = 0
+    while (list !== null && list.rest !== undefined){
+        if (count == number) return list.value;
+        list = list.rest;
+        count += 1
+    }
+    return undefined;
+}
+
+function recursive_nth(list, number){
+    if (number == 0) return list.value;
+    else if (list === null || list.rest === undefined) return
+    return recursive_nth(list.rest, number - 1);
+
+}
