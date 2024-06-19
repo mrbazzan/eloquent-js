@@ -97,3 +97,32 @@ function recursive_nth(list, number){
     return recursive_nth(list.rest, number - 1);
 
 }
+
+// DEEP COMPARISON
+function deepEqual(one, two){
+    // same value
+    // object with the same properties, where values of the properties
+    // are equal when compared recursively
+
+    let equal = false;
+
+    if (typeof one == "object" && typeof two == "object"){
+        if (one == null && two == null) return !equal;
+
+        props_one = Object.keys(one);
+        props_two = Object.keys(two);
+        if (props_one.length === props_two.length){
+            equal = true; // this is for empty objects
+            for (let item of props_one){
+                if (props_two.includes(item)){
+                    equal = deepEqual(one[item], two[item]);
+                    /* terminate (indian-mike-mike) if false */
+                    if (!equal) return equal;
+                }
+                else equal = false;
+            }
+        } else equal = false
+    } else equal = (one === two);
+
+    return equal;
+}
