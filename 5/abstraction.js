@@ -41,3 +41,42 @@ function filter(array, test){
     return passed;
 }
 console.log(filter(SCRIPTS, script => script.living));
+// OR
+console.log(SCRIPTS.filter(script=>script.living));
+
+function map(array, transform){
+    let mapped = [];
+    for (let element of array){
+        mapped.push(transform(element));
+    }
+    return mapped;
+}
+console.log(map(SCRIPTS, item=>item.name))
+// OR
+console.log(SCRIPTS.map(item=>item.name));
+
+function reduce(array, combine, start){
+    let current = start;
+    for (let element of array){
+        current = combine(current, element);
+    }
+    return current;
+}
+console.log(reduce([3, 4, 5, 6], (a, b) => a+b, 2))
+
+// character count
+function characterCount(script){
+    return script.ranges.reduce((count, [from , to]) => {
+        return count+(to-from);
+    }, 0)
+}
+console.log(reduce(
+    SCRIPTS,
+    (a, b) => characterCount(a) > characterCount(b)? a: b,
+    SCRIPTS[0]
+));
+
+console.log(SCRIPTS.reduce(
+    (a, b) => characterCount(a) > characterCount(b)? a: b)
+);
+
