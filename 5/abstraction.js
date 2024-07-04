@@ -80,3 +80,15 @@ console.log(SCRIPTS.reduce(
     (a, b) => characterCount(a) > characterCount(b)? a: b)
 );
 
+// COMPOSABILITY
+// average year of origin for living and dead scripts
+
+function average(array){
+    return array.reduce((a, b) => a + b) / array.length;
+}
+let avg_living_year = average(
+    SCRIPTS.filter(s => s.living).map(script => script.year)
+)
+let avg_dead_year = average(
+    SCRIPTS.filter(s => !s.living).map(script => script.year)
+)
