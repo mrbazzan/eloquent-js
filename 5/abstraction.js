@@ -29,6 +29,14 @@ SCRIPTS = [
         living: false,
         link: "https://en.wikipedia.org/wiki/Coptic_alphabet"
     },
+    {
+        name: "example",
+        ranges: [[110, 200]],
+        direction: "ltr",
+        year: 50,
+        living: false,
+        link: "https://example.com"
+    },
 ];
 
 function filter(array, test){
@@ -92,3 +100,17 @@ let avg_living_year = average(
 let avg_dead_year = average(
     SCRIPTS.filter(s => !s.living).map(script => script.year)
 )
+
+// STRINGS AND CHARACTER CODES
+
+function characterScript(code){
+    for (let script of SCRIPTS){
+        // `some` method
+        // takes a test function and figure out wheter
+        // that function returns true for any element of the array.
+        if (script.ranges.some(([a, b]) => {
+            return (a <= code) && ( code <= b)
+        })){ return script}
+    }
+    return null;
+}
