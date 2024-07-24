@@ -22,6 +22,14 @@ repeat(3, n => {
 // SCRIPT DATA SET
 SCRIPTS = [
     {
+        name: "ASCII",
+        ranges: [[32, 255]],
+        direction: "ltr",
+        year: 0,
+        living: true,
+        link: "https://en.wikipedia.org/wiki/ascii"
+    },
+    {
         name: "Coptic",
         ranges: [[994, 1008], [11392, 11508], [11513, 11520]],
         direction: "ltr",
@@ -113,4 +121,43 @@ function characterScript(code){
         })){ return script}
     }
     return null;
+}
+
+let horseShoe = "🐴👟";
+console.log(horseShoe.charCodeAt(0)) // get each code unit
+console.log(horseShoe.codePointAt(0))// to get character
+
+let length = 0
+for (let _ of horseShoe){
+    length = length + 1;
+}
+console.log("Length of horseShoe: ", length);
+
+function countBy(items, groupName){
+    let counts = [];
+    for (let item of items){
+        let name = groupName(item);
+        let known = counts.find(item=>item.name==name);
+        if (!known){
+            counts.push({name, count: 1})
+        } else {
+            known.count += 1;
+        }
+    }
+    return counts;
+}
+console.log(countBy([1,2,3,4,5], n=>n>2));  // [{false, 2}, {true, 3}]
+
+function textScripts(text){
+    let scripts = countBy(text, char => {
+        let script = characterScript(char.codePointAt(0));
+        return script? script.name: "none";
+    }).filter(({name}) => name != "none");
+
+    let total = scripts.reduce((n, {count}) => n + count, 0);
+    if (total == 0) return "No scripts found.";
+
+    return scripts.map(({name, count}) => {
+        return `${Math.round(count*100/total)}% ${name}`;
+    }).join(", ");
 }
