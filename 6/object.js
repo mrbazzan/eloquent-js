@@ -34,3 +34,32 @@ function bar(){
     return foo;
 }
 bar()() // 2 undefined.
+
+// PROTOTYPES
+let empty = {};
+console.log(empty.toString);
+// It looks like a method is pulled out from an empty object BUT
+// {} is linked to Object.prototype ( which stores Object.toString)
+// thus making its properties accessible to the empty object.
+// This concept is known as Prototyping.
+
+// Searching for properties on an object.
+// If the property is not on the object, the property will be searched for on
+// the object's prototype and if it's not found, it will be searched for on the
+// prototype's prototype. This continues until an object without prototype is
+// reached (Object.prototype is such an object).
+
+console.log(Object.getPrototypeOf({}) == Object.prototype);
+console.log(Object.getPrototypeOf(Math.max) == Function.prototype);
+console.log(Object.getPrototypeOf(Function.prototype) == Object.prototype);
+console.log(Object.getPrototypeOf([]) == Array.prototype);
+console.log(Object.getPrototypeOf(Array.prototype) == Object.prototype);
+
+protoRabbit = {speak}
+blackRabbit = Object.create(protoRabbit)
+blackRabbit.type = "black";
+blackRabbit.speak("I am fear and darkness");
+
+greenRabbit = Object.create(protoRabbit);
+greenRabbit.type = "green";
+greenRabbit.speak("I am green and happy.")
