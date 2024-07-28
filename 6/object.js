@@ -63,3 +63,24 @@ blackRabbit.speak("I am fear and darkness");
 greenRabbit = Object.create(protoRabbit);
 greenRabbit.type = "green";
 greenRabbit.speak("I am green and happy.")
+
+// CLASSES
+// This is a syntactic sugar over JS prototype system.
+// The example above can be packaged to become:
+
+function makeRabbit(type){
+    let rabbit = Object.create(protoRabbit);
+    rabbit.type = type;
+    return rabbit;
+}
+
+// With classes, it becomes:
+
+class Rabbit {
+    constructor(type){
+        this.type = type;
+    }
+    speak(line){
+        console.log(`The ${this.type} rabbit says ${line}`);
+    }
+}
