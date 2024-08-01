@@ -84,3 +84,13 @@ class Rabbit {
         console.log(`The ${this.type} rabbit says ${line}`);
     }
 }
+/********
+ * This is what happens with class definition:
+
+function R(type){
+    this.type = type;
+}
+R.prototype.speak = function(line){
+    console.log(`The ${this.type} rabbit says ${line}`);
+}
+ ********/
