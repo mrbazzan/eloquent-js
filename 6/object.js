@@ -94,3 +94,22 @@ R.prototype.speak = function(line){
     console.log(`The ${this.type} rabbit says ${line}`);
 }
  ********/
+
+let killerRabbit = new Rabbit("killer");
+/********
+ * This is what happens when Rabbit is instantiated
+
+function instance(type){
+    obj = Object.create(R.prototype);
+
+    // .bind() returns a bounded R function.
+
+    // R's `this` is bounded to `obj` such that
+    // calling the bounded function with a type parameter makes `this.type` visible
+    // throughout all the properties in `obj` that references it.
+
+    R.bind(obj)(type);
+    return obj
+}
+let killerRabbit = instance("killer");
+ ********/
