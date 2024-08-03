@@ -113,3 +113,26 @@ function instance(type){
 }
 let killerRabbit = instance("killer");
  ********/
+
+// NOTE: Only functions defined with `function` keyword
+//       have `prototype` property as empty object.
+let protoArrow = x => x > 2;
+function proto(x) { return x > 2};
+
+console.log(protoArrow.prototype == undefined);
+console.log(proto.prototype);  // equals to {}.
+
+// It is also possible to have properties that are stored
+// directly on the instace object. These properties are unlike
+// methods which are stored on the prototype
+
+class Particle {
+    speed = 0;  // stored on each instance's object.
+    constructor(position){
+        this.position = position;
+    }
+}
+
+// classes can be defined in an expression
+let obj = new class { getword() {return "hello"; }};
+console.log(obj.getword()); // "hello"
