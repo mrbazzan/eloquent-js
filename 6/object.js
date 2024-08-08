@@ -136,3 +136,56 @@ class Particle {
 // classes can be defined in an expression
 let obj = new class { getword() {return "hello"; }};
 console.log(obj.getword()); // "hello"
+
+// PRIVATE PROPERTIES
+class SecretiveObject {
+    #getSecret(){
+        return "I ate all the food";
+    }
+    interrogate(){
+        let shallITalk = this.#getSecret();
+        console.log("Talk: " + shallITalk);
+        return "never";
+    }
+}
+
+class RandomSource {
+    #max;
+    constructor(max){
+        this.#max = max;
+    }
+    getNumber(){
+        return Math.floor(Math.random() * this.#max);
+    }
+}
+
+// OVERRIDING PROPERTIES
+
+killerRabbit.speak = "random";
+/*
+This changes the `speak` property of `killerRabbit` as the
+previous value of `speak` (the function) is now hidden behind
+the updated property (random).
+*/
+console.log(killerRabbit.speak); // random
+
+delete killerRabbit.speak;
+/*
+killerRabbit.speak now points back to the function again
+*/
+console.log(killerRabbit.speak);
+
+// MAPS
+console.log("age" in {age: 2}); // true
+console.log("toString" in {age: 2});  // true
+console.log("toString" in Object.create(null)); // false
+
+/* alternatively to `in` we can also use `hasOwn`, like so: */
+console.log(Object.hasOwn({age: 2}, "age")); // true
+console.log(Object.hasOwn({age: 2}, "toString")); // false
+
+/* to store mapping */
+let ages = new Map();
+ages.set("Boris", 39);
+console.log(ages.get("Boris"));
+console.log(ages.has("toString"));
