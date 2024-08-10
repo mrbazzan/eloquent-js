@@ -149,6 +149,8 @@ class SecretiveObject {
     }
 }
 
+// In order to use private instance properties,
+// it must be declared in the class declaration.
 class RandomSource {
     #max;
     constructor(max){
@@ -189,3 +191,16 @@ let ages = new Map();
 ages.set("Boris", 39);
 console.log(ages.get("Boris"));
 console.log(ages.has("toString"));
+
+// POLYMORPHISM
+// Writing a piece of code that works with similar interface, is a
+// powerful programing idea. This allows any object that support
+// the interface to be plugged into the code
+
+Rabbit.prototype.toString = function(){
+    return `a ${this.type} rabbit`;
+}
+console.log(String(killerRabbit));
+
+// In the example above, calling `String(killerRabbit)` activates the
+// `toString` method.
